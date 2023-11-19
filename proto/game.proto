@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package game;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "gen/go/gamepb";
+
+// The gRPC service
+service MyService {
+  rpc GetBox(GetBoxRequest) returns (Box);
+}
+
+message GetBoxRequest {
+  string boxID = 1;
+}
+
+message BoxProduct {
+  string productID = 1;
+  double probability = 2;
+}
+
+
+// Response message
+message Box {
+  string boxID = 1;
+  string name = 2;
+  string description = 3;
+  double priceOffer = 4;
+  double rtp = 5;
+  string status = 6;
+  string picture = 7;
+  string category = 8;
+  repeated BoxProduct products = 9;
+  bool recommended = 10;
+  google.protobuf.Timestamp createdAt = 11;
+}
+
